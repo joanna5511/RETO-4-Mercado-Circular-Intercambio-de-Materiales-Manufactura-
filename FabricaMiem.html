@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado silao | Fábrica Miembro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-light">
+
+    <nav class="navbar navbar-dark bg-dark border-bottom border-success py-3">
+        <div class="container">
+            <span class="navbar-brand fw-bold text-success fs-5">MERCADO DE ALGODONES BONITOS</span>
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-light small">Sesión de: <strong id="infoUsuario" class="text-success"></strong></span>
+                <button type="button" class="btn btn-sm btn-outline-success fw-bold" onclick="cerrarSesion()">Cerrar sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <div class="mb-4">
+            <h1 class="h3 fw-bold text-success mb-1">Fábrica Miembro</h1>
+            <p class="text-secondary small mb-0">Publica ofertas o solicitudes de materiales y consulta anuncios aprobados de otras fábricas.</p>
+        </div>
+
+        <div class="row g-4">
+            <!--formualrio para publicar -->
+            <div class="col-lg-5">
+                <div class="card bg-dark text-light border border-success shadow-sm">
+                    <div class="card-body p-4">
+                        <h2 class="h5 fw-bold text-success mb-3">Publicar Nuevo Anuncio</h2>
+
+                        <form id="formAnuncio">
+                            <div class="mb-3">
+                                <label for="tipoAnuncio" class="form-label text-light small fw-bold">Tipo de Publicación</label>
+                                <select id="tipoAnuncio" class="form-select bg-black text-light border-success">
+                                    <option value="Oferta">Oferta (Material excedente)</option>
+                                    <option value="Solicitud">Solicitud (Material requerido)</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="materialAnuncio" class="form-label text-light small fw-bold">Detalles del Material</label>
+                                <input type="text" id="materialAnuncio" class="form-control bg-black text-light border-secondary" placeholder="ej. 50kg de algodón sobrante o Necesito hilos de poliéster" required>
+                            </div>
+
+                            <button type="submit" id="btnPublicarAnuncio" class="btn btn-outline-success w-100 fw-bold py-2">
+                                PUBLICAR ANUNCIO
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!--Anuncios esperando a que sean aprobados (pendientes) -->
+                <div class="card bg-dark text-light border border-success shadow-sm mt-4">
+                    <div class="card-body p-4">
+                        <h2 class="h5 fw-bold text-success mb-3">Mis Anuncios Pendientes</h2>
+                        <div id="contenedorPendientes" class="d-flex flex-column gap-2">
+                            <!-- aqui se muestrran -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Anuncios aprobados -->
+            <div class="col-lg-7">
+                <div class="card bg-dark text-light border border-success shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h2 class="h5 fw-bold text-success mb-0">Anuncios Aprobados de la Fabrica</h2>
+                            <span class="badge bg-success text-dark fw-bold">APROBADO</span>
+                        </div>
+
+                        <div id="contenedorAnuncios" class="d-flex flex-column gap-3">
+                            <!-- se renderizan los anuncios que ya son aprobados -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="./JS/miScrip.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => verificarAcceso('Fabrica'));
+    </script>
+</body>
+</html>
